@@ -1,21 +1,4 @@
 import { html } from "hono/html";
-import { css, Style } from "hono/css";
-
-// const pollContainer = css`
-//     font-family: Arial, sans-serif;
-//     text-align: center;
-//     margin-top: 50px;
-//   `
-//   const results = css`
-//     margin-top: 20px;
-//     font-size: 20px;
-//   `
-//   const btn = css`
-//   padding: 10px 20px;
-//   margin: 10px;
-//   font-size: 18px;
-//   cursor: pointer;
-//   `
 
 export const Page = html`
   <!doctype html>
@@ -118,8 +101,8 @@ export const Page = html`
       </script>
       </div>
       <div class="footer">
-        <p>Built w/ 🧡 on <a href="https://pages.cloudflare.com/" target="_blank">Cloudflare Pages</a>, <a href="https://developers.cloudflare.com/durable-objects/" target="_blank">Cloudflare Durable Objects</a>, <a href="https://ai.cloudflare.com" target="_blank">Workers AI</a>, <a href="https://hono.dev/" target="_blank">Hono</p>
-      </div>
+            <p>Built w/ 🧡 on <a href="https://pages.cloudflare.com/" target="_blank">Cloudflare Pages</a>, <a href="https://developers.cloudflare.com/durable-objects/" target="_blank">Cloudflare Durable Objects</a>, <a href="https://ai.cloudflare.com" target="_blank">Workers AI</a>, <a href="https://hono.dev/" target="_blank">Hono</a> in SF🌁 ➡️ <a href="https://github.com/elizabethsiegle/nbafinals-cloudflare-ai-hono-durable-objects" target="_blank">code</a></p>
+        </div>
     </body>
   </html>
 `;
