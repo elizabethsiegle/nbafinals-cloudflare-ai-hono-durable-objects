@@ -1,0 +1,28 @@
+name = "nbafinals"
+compatibility_date = "2023-12-01"
+
+[durable_objects]
+bindings = [{ name = "OPTION1", class_name = "Option1" }, { name = "OPTION2", class_name = "Option2" }]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Option1", "Option2"]
+
+# [vars]
+# MY_VAR = "my-variable"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "my-database"
+# database_id = ""
+
+# [ai]
+# binding = "AI"
