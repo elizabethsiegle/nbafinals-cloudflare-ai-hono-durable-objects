@@ -10,7 +10,7 @@ export const Option1 = generateHonoObject(
       0,
     );
 
-    app.post("/metaglasses", async (c) => {
+    app.post("/mavs", async (c) => {
       setValue((value) => value + 1);
       return c.text((await getValue()).toString());
     });
@@ -34,7 +34,7 @@ export const Option2 = generateHonoObject(
         0,
       );
   
-      app.post("/geminiglasses", async (c) => {
+      app.post("/celtics", async (c) => {
         setValue((value) => value + 1);
         return c.text((await getValue()).toString());
       });
