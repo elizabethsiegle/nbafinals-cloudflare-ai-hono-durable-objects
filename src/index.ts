@@ -1,16 +1,32 @@
 import { Hono } from "hono";
 
 import { Page } from "./webpage";
+type Bindings = {
+  AI: any;
+  OPTION1: DurableObjectNamespace;
+  OPTION2: DurableObjectNamespace;
+};
 
 const app = new Hono<{
-  Bindings: {
-    OPTION1: DurableObjectNamespace;
-    OPTION2: DurableObjectNamespace;
-  };
+  Bindings: Bindings
 }>();
 
 app.get("/", (c) => {
   return c.html(Page);
+});
+
+app.all("/generate", async (c) => {
+  const answer = await c.env.AI.run(
+    '@cf/meta/llama-3-8b-instruct',
+    {
+      messages: [
+        { role: 'user', content: `You are a professional basketball commentator and analyst. The Dallas Mavericks are playing the Boston Celtics. Who do you think will win the 2024 NBA Finals?` }
+      ]
+    }
+  )
+  console.log(`answer ${JSON.stringify(answer)}`);
+  const obj = JSON.parse(JSON.stringify(answer));
+  return c.json(obj);
 });
 
 app.all("/option1/*", (c) => {

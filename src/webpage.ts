@@ -80,6 +80,13 @@ export const Page = html`
     .footer a:hover {
       text-decoration: underline;
     }
+    #prediction {
+      margin-top: 0px; /* Space between buttons and content */
+      padding: 20px;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
     </style>
     </head>
     <body>
@@ -90,12 +97,18 @@ export const Page = html`
         <button id="celtics">Celtics: <span id="value2"></span></button>
       </div>
       </div>
+      <div id = "prediction"></div>
       <button id="reset">Reset</button>
       <script>
         const value1 = document.getElementById("value1");
         const value2 = document.getElementById("value2");
         const mavs = document.getElementById("mavs");
         const celtics = document.getElementById("celtics");
+        const prediction = document.getElementById("prediction");
+        const generate = async () => {
+          const res = await fetch("/generate");
+          prediction.innerText = await res.text();
+        };
         const updateValue1 = async () => {
           const res = await fetch("/option1");
           value1.innerText = await res.text();
@@ -111,15 +124,18 @@ export const Page = html`
         celtics.addEventListener("click", async () => {
           await fetch("/option2/celtics", { method: "POST" });
           await updateValue2();
+          generate();
         });
         reset.addEventListener("click", async () => {
           await fetch("/option1", { method: "DELETE" });
           await fetch("/option2", { method: "DELETE" });
           await updateValue1();
           updateValue2();
+          generate();
         });
         updateValue1();
         updateValue2();
+        generate();
       </script>
       <div class="footer">
             <p>Built w/ 🧡 on <a href="https://pages.cloudflare.com/" target="_blank">Cloudflare Pages</a>, <a href="https://developers.cloudflare.com/durable-objects/" target="_blank">Cloudflare Durable Objects</a>, <a href="https://ai.cloudflare.com" target="_blank">Workers AI</a>, <a href="https://hono.dev/" target="_blank">Hono</a> in SF🌁 ➡️ <a href="https://github.com/elizabethsiegle/nbafinals-cloudflare-ai-hono-durable-objects" target="_blank">code</a></p>
