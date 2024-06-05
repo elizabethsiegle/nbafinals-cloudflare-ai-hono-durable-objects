@@ -81,12 +81,16 @@ export const Page = html`
       text-decoration: underline;
     }
     #prediction {
-      margin-top: 0px; /* Space between buttons and content */
       padding: 20px;
       background-color: #f8f9fa;
       border: 1px solid #ddd;
       border-radius: 5px;
-    }
+      width: 60%; /* Make the div less wide, adjust the percentage as needed */
+      position: absolute; /* Position the div absolutely */
+      top: 70%; /* Move it closer to the lower half of the page */
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center it horizontally */
+  }
     </style>
     </head>
     <body>
@@ -120,6 +124,7 @@ export const Page = html`
         mavs.addEventListener("click", async () => {
           await fetch("/option1/mavs", { method: "POST" });
           await updateValue1();
+          generate();
         });
         celtics.addEventListener("click", async () => {
           await fetch("/option2/celtics", { method: "POST" });
@@ -131,11 +136,9 @@ export const Page = html`
           await fetch("/option2", { method: "DELETE" });
           await updateValue1();
           updateValue2();
-          generate();
         });
         updateValue1();
         updateValue2();
-        generate();
       </script>
       <div class="footer">
             <p>Built w/ 🧡 on <a href="https://pages.cloudflare.com/" target="_blank">Cloudflare Pages</a>, <a href="https://developers.cloudflare.com/durable-objects/" target="_blank">Cloudflare Durable Objects</a>, <a href="https://ai.cloudflare.com" target="_blank">Workers AI</a>, <a href="https://hono.dev/" target="_blank">Hono</a> in SF🌁 ➡️ <a href="https://github.com/elizabethsiegle/nbafinals-cloudflare-ai-hono-durable-objects" target="_blank">code</a></p>
