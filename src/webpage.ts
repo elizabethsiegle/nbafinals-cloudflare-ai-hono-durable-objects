@@ -87,10 +87,26 @@ export const Page = html`
       border-radius: 5px;
       width: 60%; /* Make the div less wide, adjust the percentage as needed */
       position: absolute; /* Position the div absolutely */
-      top: 70%; /* Move it closer to the lower half of the page */
+      top: 85%; /* Move it further down on the page */
       left: 50%;
       transform: translate(-50%, -50%); /* Center it horizontally */
-  }
+    }
+    .spinner {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 2s linear infinite;
+      margin: 0 auto 20px auto; /* Adjust margin to move the spinner up */
+      position: relative;
+      top: -20px; /* Move the spinner up */
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     </style>
     </head>
     <body>
@@ -101,8 +117,8 @@ export const Page = html`
         <button id="celtics">Celtics: <span id="value2"></span></button>
       </div>
       </div>
+      <div class="spinner" id="spinner"></div>
       <div id = "prediction"></div>
-      <button id="reset">Reset</button>
       <script>
         const value1 = document.getElementById("value1");
         const value2 = document.getElementById("value2");
@@ -110,16 +126,23 @@ export const Page = html`
         const celtics = document.getElementById("celtics");
         const prediction = document.getElementById("prediction");
         const generate = async () => {
+          const spinner = document.getElementById('spinner');
           const res = await fetch("/generate");
           prediction.innerText = await res.text();
+          // Hide the spinner and show the prediction text
+          spinner.style.display = 'none';
         };
         const updateValue1 = async () => {
           const res = await fetch("/option1");
           value1.innerText = await res.text();
+          // Show the spinner and hide the prediction text
+          spinner.style.display = 'block';
         };
         const updateValue2 = async () => {
             const res = await fetch("/option2");
             value2.innerText = await res.text();
+            // Show the spinner and hide the prediction text
+            spinner.style.display = 'block';
           };
         mavs.addEventListener("click", async () => {
           await fetch("/option1/mavs", { method: "POST" });
@@ -131,12 +154,12 @@ export const Page = html`
           await updateValue2();
           generate();
         });
-        reset.addEventListener("click", async () => {
-          await fetch("/option1", { method: "DELETE" });
-          await fetch("/option2", { method: "DELETE" });
-          await updateValue1();
-          updateValue2();
-        });
+        // reset.addEventListener("click", async () => {
+        //   await fetch("/option1", { method: "DELETE" });
+        //   await fetch("/option2", { method: "DELETE" });
+        //   await updateValue1();
+        //   updateValue2();
+        // });
         updateValue1();
         updateValue2();
       </script>
