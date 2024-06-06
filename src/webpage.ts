@@ -90,12 +90,11 @@ export const Page = html`
 
     #prediction {
       padding: 10px;
-      background-color: #f8f9fa;
       border: 1px solid #ddd;
       border-radius: 5px;
       width: 65%; /* Make the div less wide, adjust the percentage as needed */
       position: absolute; /* Position the div absolutely */
-      top: 32%; /* Move it higher on the page */
+      top: 30%; /* Move it higher on the page */
       left: 50%;
       transform: translate(-50%, -50%); /* Center it horizontally */
       text-align: center; /* Center content inside the div */
@@ -123,7 +122,7 @@ export const Page = html`
   .spinner span {
     /* Style the text */
     margin-top: 50px;
-    font-size: 30px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     color: #555; /* Choose a suitable color */
   }
   
